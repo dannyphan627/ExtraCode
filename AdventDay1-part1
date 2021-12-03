@@ -1,0 +1,42 @@
+import java.nio.file.FileSystems;
+import java.util.Arrays;
+import java.util.List;
+import java.io.IOException;
+import java.nio.file.*;
+
+public class Example {
+
+	public static void main(String[] args) {
+		
+		Path file = FileSystems.getDefault().getPath("", "input.txt");
+		try {
+			int count = 0;
+			
+			List<String> lines = Files.readAllLines(file);
+			int[] measurements = new int[lines.size()];
+			
+			//System.out.println(lines.size());
+			for(int i = 0; i < lines.size(); i++) {				
+				measurements[i] = Integer.parseInt(lines.get(i));
+			
+			}	
+			var current = measurements[0];
+			
+			for(int j = 1; j < measurements.length; j++) {
+				var next = measurements[j];
+				
+				if(next > current) {
+					count+= 1;
+					current = next;
+				} else {
+					current = next;
+				}
+
+			}
+			//System.out.println(count);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+}
